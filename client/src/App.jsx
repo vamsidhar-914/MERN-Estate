@@ -11,6 +11,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { useSelector } from "react-redux";
 import { ListingPage } from "./pages/ListingPage";
 import { UserListing } from "./pages/UserListing";
+import { EditListing } from "./pages/EditListing";
 
 export default function () {
   const { currentUser } = useSelector((state) => state.user);
@@ -39,6 +40,10 @@ export default function () {
           <Route
             path='/listing/:id'
             element={<UserListing />}
+          />
+          <Route
+            path='/editListing/:id'
+            element={<EditListing />}
           />
         </Route>
         <Route
