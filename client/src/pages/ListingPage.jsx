@@ -305,7 +305,7 @@ export function ListingPage() {
               <div className='flex gap-3 items-center'>
                 <input
                   type='number'
-                  id='discountedPrice'
+                  id='discountPrice'
                   min='0'
                   max='10000'
                   required

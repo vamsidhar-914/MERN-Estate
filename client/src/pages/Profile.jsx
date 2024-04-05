@@ -270,10 +270,10 @@ export function Profile() {
           </h1>
           {userListings.map((listing) => (
             <div
-              className='flex justify-between border border-gray-300 rounded-lg p-2 mb-10'
+              className='flex justify-between border border-gray-300 rounded-lg p-2 mb-2'
               key={listing._id}
             >
-              <div className='flex gap-2 items-center'>
+              <div className='flex items-center'>
                 <Link to={`/listing/${listing._id}`}>
                   <img
                     src={listing.imageUrls[0]}
@@ -282,7 +282,7 @@ export function Profile() {
                   />
                 </Link>
                 <Link to={`/listing/${listing._id}`}>
-                  <p className='ml-3 font-semibold truncate hover:underline'>
+                  <p className='truncate ml-3 font-semibold  hover:underline'>
                     {listing.name}
                   </p>
                 </Link>

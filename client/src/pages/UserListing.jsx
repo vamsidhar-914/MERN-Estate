@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
@@ -14,9 +14,10 @@ import {
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Contact } from "../components/Contact";
+import { ImageSlider } from "../components/ImageSlider";
 
 export function UserListing() {
-  SwiperCore.use(Navigation);
+  SwiperCore.use([Navigation]);
   const params = useParams();
   const [data, setdata] = useState(null);
   const [loading, setloading] = useState(true);
@@ -29,8 +30,7 @@ export function UserListing() {
     const fetchListing = async () => {
       try {
         setloading(true);
-        const listingId = params.id;
-        const res = await fetch(`/api/listing/${listingId}`);
+        const res = await fetch(`/api/listing/${params.id}`);
         const data = await res.json();
         if (data.success === false) {
           seterror(true);
@@ -39,10 +39,10 @@ export function UserListing() {
         }
         setdata(data);
         setloading(false);
+        seterror(false);
       } catch (err) {
         seterror(true);
         setloading(false);
-        seterror(false);
       }
     };
     fetchListing();
@@ -55,12 +55,12 @@ export function UserListing() {
         <p className='text-center my-7 text-2xl'>something went wrong!</p>
       )}
       {data && !loading && !error && (
-        <div>
+        <div className=''>
           <Swiper navigation>
             {data.imageUrls.map((url) => (
               <SwiperSlide key={url}>
                 <div
-                  className='h-[450px]'
+                  className='h-[550px]'
                   style={{
                     background: `url(${url}) center no-repeat`,
                     backgroundSize: "cover",
